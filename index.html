@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Tiles de un server</title>
+	<meta charset="utf-8" />
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link rel="stylesheet" href="https://npmcdn.com/leaflet@1.0.0-rc.2/dist/leaflet.css" />
+</head>
+<body>
+	<div id="mapid" style="width: 600px; height: 400px"></div>
+	<script src="https://npmcdn.com/leaflet@1.0.0-rc.2/dist/leaflet.js"></script>
+  <script>
+		var mymap = L.map('mapid').setView([29.095555555556, -110.95083333333], 11);
+	  L.tileLayer('http://localhost:8001/{z}/{x}/{y}').addTo(mymap);
+	</script>
+</body>
+</html>

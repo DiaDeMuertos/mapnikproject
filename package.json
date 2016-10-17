@@ -1,0 +1,23 @@
+{
+  "name": "mapnikproject",
+  "version": "1.0.0",
+  "description": "",
+  "main": "generarTiles.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DiaDeMuertos/mapnikproject.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DiaDeMuertos/mapnikproject/issues"
+  },
+  "homepage": "https://github.com/DiaDeMuertos/mapnikproject#readme",
+  "dependencies": {
+    "tilelive": "^5.12.2"
+  }
+}

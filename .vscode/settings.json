@@ -1,0 +1,20 @@
+// Place your settings in this file to overwrite default and user settings.
+{
+    "jshint.options": {"esversion": 6},
+    "files.exclude": {
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/.DS_Store": true,
+        "estructura": true,
+        "capas": true,
+        "fonts": true,
+        "pattern": true, 
+        ".vscode": true,
+        ".gitignore": true,
+        "README.md": true,
+        "package.json": true,
+        "node_modules": true       
+    },
+    "npm-intellisense.scanDevDependencies": true
+}

@@ -1,0 +1,397 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE Map[]>
+<Map srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over" background-color="#f8f4f0" font-directory="./fonts">
+  <Parameters>
+    <Parameter name="bounds">-180,-85.0511,180,85.0511</Parameter>
+    <Parameter name="center">-110.9835,29.0848,13</Parameter>
+    <Parameter name="format">png8:m=h</Parameter>
+    <Parameter name="maxzoom">16</Parameter>
+    <Parameter name="minzoom">0</Parameter>
+  </Parameters>
+  <!-- -------------------------------------------------------------------------- -->
+  <Style name="hermosillo_poligonos_tipos" filter-mode="first">
+    <Rule>
+      <MaxScaleDenominator>100000</MaxScaleDenominator>
+      <Filter>([tipo] = 'escuela')</Filter>
+      <PolygonSymbolizer fill="#f0e8f8" />
+    </Rule>
+    <Rule>
+      <MaxScaleDenominator>100000</MaxScaleDenominator>
+      <Filter>([tipo] = 'salud')</Filter>
+      <PolygonSymbolizer fill="#ffddee" />
+    </Rule>
+    <Rule>
+      <MaxScaleDenominator>100000</MaxScaleDenominator>
+      <Filter>([tipo] = 'cementerio')</Filter>
+      <PolygonSymbolizer fill="#dce0d8" />
+    </Rule>
+    <Rule>
+      <MaxScaleDenominator>100000</MaxScaleDenominator>
+      <Filter>([tipo] = 'verde')</Filter>
+      <PolygonSymbolizer fill="#d8e8c8" />
+    </Rule>
+  </Style>
+  <Layer name="hermosillo_poligonos_tipos" srs="+proj=longlat +datum=WGS84 +no_defs">
+    <StyleName>hermosillo_poligonos_tipos</StyleName>
+    <Datasource>
+      <Parameter name="file">./capas/hermosillo_poligonos_tipos.shp</Parameter>
+      <Parameter name="type">shape</Parameter>
+    </Datasource>
+      <!-- <Datasource>
+        <Parameter name="host">localhost</Parameter>
+        <Parameter name="type">postgis</Parameter>
+        <Parameter name="dbname">osm</Parameter>
+        <Parameter name="user">postgres</Parameter>
+        <Parameter name="password">123</Parameter>
+        <Parameter name="table">hermosillo_poligonos_tipos</Parameter>
+      </Datasource> -->
+  </Layer>
+  <!-- -------------------------------------------------------------------------- -->
+  <Style name="hermosillo_poligonos_agua-blur" filter-mode="first" image-filters="agg-stack-blur(1,1)" comp-op="soft-light">
+    <Rule>
+      <MaxScaleDenominator>100000</MaxScaleDenominator>
+      <PolygonSymbolizer fill="#f0f0ff" geometry-transform="translate(0,1)" clip="false" />
+    </Rule>
+  </Style>
+  <Style name="hermosillo_poligonos_agua" filter-mode="first">
+    <Rule>
+      <MaxScaleDenominator>100000</MaxScaleDenominator>
+      <PolygonSymbolizer fill="#8fb7df" />
+      <PolygonPatternSymbolizer file="pattern/wave.png" />
+    </Rule>
+  </Style>
+  <Layer name="hermosillo_poligonos_agua" srs="+proj=longlat +datum=WGS84 +no_defs">
+    <StyleName>hermosillo_poligonos_agua</StyleName>
+    <StyleName>hermosillo_poligonos_agua-blur</StyleName>
+      <Datasource>
+        <Parameter name="file">./capas/hermosillo_poligonos_agua.shp</Parameter>
+        <Parameter name="type">shape</Parameter>
+      </Datasource>
+      <!-- <Datasource>
+        <Parameter name="host">localhost</Parameter>
+        <Parameter name="type">postgis</Parameter>
+        <Parameter name="dbname">osm</Parameter>
+        <Parameter name="user">postgres</Parameter>
+        <Parameter name="password">123</Parameter>
+        <Parameter name="table">hermosillo_poligonos_agua</Parameter>
+      </Datasource> -->
+  </Layer>
+  <!-- -------------------------------------------------------------------------- -->
+  <Style name="hermosillo_lineas_agua" filter-mode="first">
+    <Rule>
+      <MaxScaleDenominator>12500</MaxScaleDenominator>
+      <LineSymbolizer stroke-width="3" stroke="#90b4d8" stroke-linecap="round" stroke-dasharray="6, 2, 2, 2" />
+    </Rule>
+    <Rule>
+      <MaxScaleDenominator>50000</MaxScaleDenominator>
+      <MinScaleDenominator>12500</MinScaleDenominator>
+      <LineSymbolizer stroke-width="2" stroke="#90b4d8" stroke-linecap="round" stroke-dasharray="6, 2, 2, 2" />
+    </Rule>
+    <Rule>
+      <MaxScaleDenominator>100000</MaxScaleDenominator>
+      <MinScaleDenominator>50000</MinScaleDenominator>
+      <LineSymbolizer stroke-width="1" stroke="#90b4d8" stroke-linecap="round" stroke-dasharray="6, 2, 2, 2" />
+    </Rule>
+  </Style>
+  <Layer name="hermosillo_lineas_agua" srs="+proj=longlat +datum=WGS84 +no_defs">
+    <StyleName>hermosillo_lineas_agua</StyleName>
+      <Datasource>
+        <Parameter name="file">./capas/hermosillo_lineas_agua.shp</Parameter>
+        <Parameter name="type">shape</Parameter>
+      </Datasource>
+      <!-- <Datasource>
+        <Parameter name="host">localhost</Parameter>
+        <Parameter name="type">postgis</Parameter>
+        <Parameter name="dbname">osm</Parameter>
+        <Parameter name="user">postgres</Parameter>
+        <Parameter name="password">123</Parameter>
+        <Parameter name="table">hermosillo_lineas_agua</Parameter>
+    </Datasource> -->
+  </Layer>
+  <!-- -------------------------------------------------------------------------- -->
+  <Style name="hermosillo_calles" filter-mode="first">
+    <Rule>
+      <MaxScaleDenominator>25000</MaxScaleDenominator>
+      <TextSymbolizer size="13" placement="line" face-name="DejaVu Sans Book" fill="#776655" halo-fill="rgba(255, 255, 255, 0.5)" halo-radius="1" halo-rasterizer="fast" avoid-edges="true" >[nombre]</TextSymbolizer>
+    </Rule>
+    <Rule>
+      <MaxScaleDenominator>200000</MaxScaleDenominator>
+      <MinScaleDenominator>25000</MinScaleDenominator>
+      <TextSymbolizer placement="line" face-name="DejaVu Sans Book" fill="#776655" halo-fill="rgba(255, 255, 255, 0.5)" halo-radius="1" halo-rasterizer="fast" size="12" avoid-edges="true" >[nombre]</TextSymbolizer>
+    </Rule>
+  </Style>
+  <Style name="hermosillo_calles-fill" filter-mode="first">
+    <Rule>
+      <MaxScaleDenominator>12500</MaxScaleDenominator>
+      <Filter>([tipo] != 'primary') and ([tipo] != 'primary_link') and ([tipo] != 'tertiary')</Filter>
+      <LineSymbolizer stroke-width="4" stroke="#ffffff" stroke-linejoin="round" />
+    </Rule>
+    <Rule>
+      <MaxScaleDenominator>25000</MaxScaleDenominator>
+      <MinScaleDenominator>12500</MinScaleDenominator>
+      <Filter>([tipo] != 'primary') and ([tipo] != 'primary_link') and ([tipo] != 'tertiary')</Filter>
+      <LineSymbolizer stroke-width="2.5" stroke="#ffffff" stroke-linejoin="round" />
+    </Rule>
+    <Rule>
+      <MaxScaleDenominator>12500</MaxScaleDenominator>
+      <Filter>([tipo] = 'tertiary')</Filter>
+      <LineSymbolizer stroke-width="6" stroke-linejoin="round" stroke="#ffeeaa" />
+    </Rule>
+    <Rule>
+      <MaxScaleDenominator>25000</MaxScaleDenominator>
+      <MinScaleDenominator>12500</MinScaleDenominator>
+      <Filter>([tipo] = 'tertiary')</Filter>
+      <LineSymbolizer stroke-width="3.5" stroke-linejoin="round" stroke="#ffeeaa" />
+    </Rule>
+    <Rule>
+      <MaxScaleDenominator>50000</MaxScaleDenominator>
+      <MinScaleDenominator>25000</MinScaleDenominator>
+      <Filter>([tipo] = 'tertiary')</Filter>
+      <LineSymbolizer stroke-width="2.5" stroke-linejoin="round" stroke="#ffeeaa" />
+    </Rule>
+    <Rule>
+      <MaxScaleDenominator>100000</MaxScaleDenominator>
+      <MinScaleDenominator>50000</MinScaleDenominator>
+      <Filter>([tipo] = 'tertiary')</Filter>
+      <LineSymbolizer stroke-width="1.5" stroke-linejoin="round" stroke="#ffeeaa" />
+    </Rule>
+    <Rule>
+      <MaxScaleDenominator>200000</MaxScaleDenominator>
+      <MinScaleDenominator>100000</MinScaleDenominator>
+      <Filter>([tipo] = 'tertiary')</Filter>
+      <LineSymbolizer stroke-width="1" stroke-linejoin="round" stroke="#ffeeaa" />
+    </Rule>
+    <Rule>
+      <MaxScaleDenominator>12500</MaxScaleDenominator>
+      <Filter>([tipo] = 'primary_link')</Filter>
+      <LineSymbolizer stroke-width="6" stroke-linejoin="round" stroke="#ffeeaa" />
+    </Rule>
+    <Rule>
+      <MaxScaleDenominator>25000</MaxScaleDenominator>
+      <MinScaleDenominator>12500</MinScaleDenominator>
+      <Filter>([tipo] = 'primary_link')</Filter>
+      <LineSymbolizer stroke-width="3.5" stroke-linejoin="round" stroke="#ffeeaa" />
+    </Rule>
+    <Rule>
+      <MaxScaleDenominator>50000</MaxScaleDenominator>
+      <MinScaleDenominator>25000</MinScaleDenominator>
+      <Filter>([tipo] = 'primary_link')</Filter>
+      <LineSymbolizer stroke-width="2.5" stroke-linejoin="round" stroke="#ffeeaa" />
+    </Rule>
+    <Rule>
+      <MaxScaleDenominator>100000</MaxScaleDenominator>
+      <MinScaleDenominator>50000</MinScaleDenominator>
+      <Filter>([tipo] = 'primary_link')</Filter>
+      <LineSymbolizer stroke-width="1.5" stroke-linejoin="round" stroke="#ffeeaa" />
+    </Rule>
+    <Rule>
+      <MaxScaleDenominator>200000</MaxScaleDenominator>
+      <MinScaleDenominator>100000</MinScaleDenominator>
+      <Filter>([tipo] = 'primary_link')</Filter>
+      <LineSymbolizer stroke-width="1" stroke-linejoin="round" stroke="#ffeeaa" />
+    </Rule>
+    <Rule>
+      <MaxScaleDenominator>12500</MaxScaleDenominator>
+      <Filter>([tipo] = 'primary')</Filter>
+      <LineSymbolizer stroke-width="6" stroke-linejoin="round" stroke="#ffeeaa" />
+    </Rule>
+    <Rule>
+      <MaxScaleDenominator>25000</MaxScaleDenominator>
+      <MinScaleDenominator>12500</MinScaleDenominator>
+      <Filter>([tipo] = 'primary')</Filter>
+      <LineSymbolizer stroke-width="3.5" stroke-linejoin="round" stroke="#ffeeaa" />
+    </Rule>
+    <Rule>
+      <MaxScaleDenominator>50000</MaxScaleDenominator>
+      <MinScaleDenominator>25000</MinScaleDenominator>
+      <Filter>([tipo] = 'primary')</Filter>
+      <LineSymbolizer stroke-width="2.5" stroke-linejoin="round" stroke="#ffeeaa" />
+    </Rule>
+    <Rule>
+      <MaxScaleDenominator>100000</MaxScaleDenominator>
+      <MinScaleDenominator>50000</MinScaleDenominator>
+      <Filter>([tipo] = 'primary')</Filter>
+      <LineSymbolizer stroke-width="1.5" stroke-linejoin="round" stroke="#ffeeaa" />
+    </Rule>
+    <Rule>
+      <MaxScaleDenominator>200000</MaxScaleDenominator>
+      <MinScaleDenominator>100000</MinScaleDenominator>
+      <Filter>([tipo] = 'primary')</Filter>
+      <LineSymbolizer stroke-width="1" stroke-linejoin="round" stroke="#ffeeaa" />
+    </Rule>
+  </Style>
+  <Style name="hermosillo_calles-case" filter-mode="first">
+    <Rule>
+      <MaxScaleDenominator>12500</MaxScaleDenominator>
+      <Filter>([tipo] != 'primary') and ([tipo] != 'primary_link') and ([tipo] != 'tertiary')</Filter>
+      <LineSymbolizer stroke-width="6.5" stroke-linejoin="round" stroke="#c6c3c0" />
+    </Rule>
+    <Rule>
+      <MaxScaleDenominator>25000</MaxScaleDenominator>
+      <MinScaleDenominator>12500</MinScaleDenominator>
+      <Filter>([tipo] != 'primary') and ([tipo] != 'primary_link') and ([tipo] != 'tertiary')</Filter>
+      <LineSymbolizer stroke-width="4" stroke-linejoin="round" stroke="#c6c3c0" />
+    </Rule>
+    <Rule>
+      <MaxScaleDenominator>50000</MaxScaleDenominator>
+      <MinScaleDenominator>25000</MinScaleDenominator>
+      <Filter>([tipo] != 'primary') and ([tipo] != 'primary_link') and ([tipo] != 'tertiary')</Filter>
+      <LineSymbolizer stroke-width="1" stroke-linejoin="round" stroke="#c6c3c0" />
+    </Rule>
+    <Rule>
+      <MaxScaleDenominator>100000</MaxScaleDenominator>
+      <MinScaleDenominator>50000</MinScaleDenominator>
+      <Filter>([tipo] != 'primary') and ([tipo] != 'primary_link') and ([tipo] != 'tertiary')</Filter>
+      <LineSymbolizer stroke-width="0.5" stroke-linejoin="round" stroke="#c6c3c0" />
+    </Rule>
+    <Rule>
+      <MaxScaleDenominator>12500</MaxScaleDenominator>
+      <Filter>([tipo] = 'primary')</Filter>
+      <LineSymbolizer stroke-width="8" stroke-linejoin="round" stroke="#e1b380" />
+    </Rule>
+    <Rule>
+      <MaxScaleDenominator>25000</MaxScaleDenominator>
+      <MinScaleDenominator>12500</MinScaleDenominator>
+      <Filter>([tipo] = 'primary')</Filter>
+      <LineSymbolizer stroke-width="5" stroke-linejoin="round" stroke="#e1b380" />
+    </Rule>
+    <Rule>
+      <MaxScaleDenominator>50000</MaxScaleDenominator>
+      <MinScaleDenominator>25000</MinScaleDenominator>
+      <Filter>([tipo] = 'primary')</Filter>
+      <LineSymbolizer stroke-width="4" stroke-linejoin="round" stroke="#e1b380" />
+    </Rule>
+    <Rule>
+      <MaxScaleDenominator>100000</MaxScaleDenominator>
+      <MinScaleDenominator>50000</MinScaleDenominator>
+      <Filter>([tipo] = 'primary')</Filter>
+      <LineSymbolizer stroke-width="2.5" stroke-linejoin="round" stroke="#e1b380" />
+    </Rule>
+    <Rule>
+      <MaxScaleDenominator>200000</MaxScaleDenominator>
+      <MinScaleDenominator>100000</MinScaleDenominator>
+      <Filter>([tipo] = 'primary')</Filter>
+      <LineSymbolizer stroke-linejoin="round" stroke="#e1b380" />
+    </Rule>
+    <Rule>
+      <MaxScaleDenominator>12500</MaxScaleDenominator>
+      <Filter>([tipo] = 'tertiary')</Filter>
+      <LineSymbolizer stroke-width="8" stroke-linejoin="round" stroke="#e1b380" />
+    </Rule>
+    <Rule>
+      <MaxScaleDenominator>25000</MaxScaleDenominator>
+      <MinScaleDenominator>12500</MinScaleDenominator>
+      <Filter>([tipo] = 'tertiary')</Filter>
+      <LineSymbolizer stroke-width="5" stroke-linejoin="round" stroke="#e1b380" />
+    </Rule>
+    <Rule>
+      <MaxScaleDenominator>50000</MaxScaleDenominator>
+      <MinScaleDenominator>25000</MinScaleDenominator>
+      <Filter>([tipo] = 'tertiary')</Filter>
+      <LineSymbolizer stroke-width="4" stroke-linejoin="round" stroke="#e1b380" />
+    </Rule>
+    <Rule>
+      <MaxScaleDenominator>100000</MaxScaleDenominator>
+      <MinScaleDenominator>50000</MinScaleDenominator>
+      <Filter>([tipo] = 'tertiary')</Filter>
+      <LineSymbolizer stroke-width="2.5" stroke-linejoin="round" stroke="#e1b380" />
+    </Rule>
+    <Rule>
+      <MaxScaleDenominator>200000</MaxScaleDenominator>
+      <MinScaleDenominator>100000</MinScaleDenominator>
+      <Filter>([tipo] = 'tertiary')</Filter>
+      <LineSymbolizer stroke-linejoin="round" stroke="#e1b380" />
+    </Rule>
+    <Rule>
+      <MaxScaleDenominator>12500</MaxScaleDenominator>
+      <Filter>([tipo] = 'primary_link')</Filter>
+      <LineSymbolizer stroke-width="8" stroke-linejoin="round" stroke="#e1b380" />
+    </Rule>
+    <Rule>
+      <MaxScaleDenominator>25000</MaxScaleDenominator>
+      <MinScaleDenominator>12500</MinScaleDenominator>
+      <Filter>([tipo] = 'primary_link')</Filter>
+      <LineSymbolizer stroke-width="5" stroke-linejoin="round" stroke="#e1b380" />
+    </Rule>
+    <Rule>
+      <MaxScaleDenominator>50000</MaxScaleDenominator>
+      <MinScaleDenominator>25000</MinScaleDenominator>
+      <Filter>([tipo] = 'primary_link')</Filter>
+      <LineSymbolizer stroke-width="4" stroke-linejoin="round" stroke="#e1b380" />
+    </Rule>
+    <Rule>
+      <MaxScaleDenominator>100000</MaxScaleDenominator>
+      <MinScaleDenominator>50000</MinScaleDenominator>
+      <Filter>([tipo] = 'primary_link')</Filter>
+      <LineSymbolizer stroke-width="2.5" stroke-linejoin="round" stroke="#e1b380" />
+    </Rule>
+    <Rule>
+      <MaxScaleDenominator>200000</MaxScaleDenominator>
+      <MinScaleDenominator>100000</MinScaleDenominator>
+      <Filter>([tipo] = 'primary_link')</Filter>
+      <LineSymbolizer stroke-linejoin="round" stroke="#e1b380" />
+    </Rule>
+  </Style>
+  <Layer name="hermosillo_calles" srs="+proj=longlat +datum=WGS84 +no_defs">
+    <StyleName>hermosillo_calles-case</StyleName>
+    <StyleName>hermosillo_calles-fill</StyleName>
+    <StyleName>hermosillo_calles</StyleName>
+    <Datasource>
+      <Parameter name="file">./capas/hermosillo_calles.shp</Parameter>
+      <Parameter name="type">shape</Parameter>
+    </Datasource>
+    <!-- <Datasource>
+      <Parameter name="host">localhost</Parameter>
+      <Parameter name="type">postgis</Parameter>
+      <Parameter name="dbname">osm</Parameter>
+      <Parameter name="user">postgres</Parameter>
+      <Parameter name="password">123</Parameter>
+      <Parameter name="table">hermosillo_calles</Parameter>
+    </Datasource> -->
+  </Layer>
+  <!-- -------------------------------------------------------------------------- -->
+  <Style name="hermosillo_punto" filter-mode="first">
+    <Rule>
+      <LineSymbolizer stroke-width="1" stroke="rgba(136, 221, 119, 0.5)"/>
+      <TextSymbolizer face-name="DejaVu Sans Book" wrap-width="120" wrap-before="true" fill="#333333" halo-fill="rgba(255, 255, 255, 0.5)" halo-radius="1" halo-rasterizer="fast" size="15" >[nombre]</TextSymbolizer>
+    </Rule>
+  </Style>
+  <Layer name="hermosillo_punto" srs="+proj=longlat +datum=WGS84 +no_defs">
+    <StyleName>hermosillo_punto</StyleName>
+    <Datasource>
+      <Parameter name="file">./capas/hermosillo_punto.shp</Parameter>
+      <Parameter name="type">shape</Parameter>
+    </Datasource>
+    <!-- <Datasource>
+      <Parameter name="host">localhost</Parameter>
+      <Parameter name="type">postgis</Parameter>
+      <Parameter name="dbname">osm</Parameter>
+      <Parameter name="user">postgres</Parameter>
+      <Parameter name="password">123</Parameter>
+      <Parameter name="table">hermosillo_punto</Parameter>
+    </Datasource> -->
+  </Layer>
+  <!-- -------------------------------------------------------------------------- -->
+  <Style name="hermosillo_4326" filter-mode="first">
+    <Rule>
+      <MaxScaleDenominator>400000</MaxScaleDenominator>
+      <MinScaleDenominator>100000</MinScaleDenominator>
+      <LineSymbolizer stroke-width="0.5" stroke="#000000" />
+    </Rule>
+  </Style>
+  <Layer name="hermosillo_4326" srs="+proj=longlat +datum=WGS84 +no_defs">
+    <StyleName>hermosillo_4326</StyleName>
+    <Datasource>
+      <Parameter name="file">./capas/hermosillo_4326.shp</Parameter>
+      <Parameter name="type">shape</Parameter>
+    </Datasource>
+    <!-- <Datasource>
+      <Parameter name="host">localhost</Parameter>
+      <Parameter name="type">postgis</Parameter>
+      <Parameter name="dbname">osm</Parameter>
+      <Parameter name="user">postgres</Parameter>
+      <Parameter name="password">123</Parameter>
+      <Parameter name="table">hermosillo_4326</Parameter>
+    </Datasource> -->
+  </Layer>
+</Map>
